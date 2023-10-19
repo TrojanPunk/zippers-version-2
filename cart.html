@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Poppins:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top bg-white">
+        <div class="container">
+            <a class="navbar-brand primary-color-black font-weight-bold" href="homepage.html">ZIPPERS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto d-flex">
+                    <li class="nav-item px">
+                        <a class="nav-link primary-color-gray" id="categoryAll">All</a>
+                    </li>
+                    <li class="nav-item px">
+                        <a class="nav-link primary-color-gray" id="categoryMens">Men's Clothing</a>
+                    </li>
+                    <li class="nav-item px">
+                        <a class="nav-link primary-color-gray" id="categoryWomens">Women's Clothing</a>
+                    </li>
+                    <li class="nav-item px">
+                        <a class="nav-link primary-color-gray" id="categoryHardware">Electronics</a>
+                    </li>
+                </ul>
+                <div class="navbar-text">
+                    <button
+                        class="btn material-symbols-outlined primary-color-black bg-green rounded-circle"
+                        href="cart.html">
+                        shopping_cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <h1 class="order-summary">Order Details</h1>
+    <hr />
+
+    <h3 id="empty-cart">
+    </h3>
+
+    <div id="cart-items">
+    </div>
+
+    <div id="personal-details-container" class="container p-0">
+        <h1 class="h3 mb-2">Payment</h1>
+        <div class="row">
+            <!-- Left -->
+            <div class="col-lg-9">
+                <div class="accordion" id="accordionPayment">
+                    <!-- Credit card -->
+                    <div class="accordion-item mb-3">
+
+                        <div id="collapseCC" class="accordion-collapse collapse show"
+                            data-bs-parent="#accordionPayment">
+                            <div class="accordion-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Enter Name</label>
+                                    <input type="text" class="form-control" placeholder="Full Name">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Mobile Number</label>
+                                    <input type="number" class="form-control" placeholder="Mobile Number">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Flat No. / Building / Locality</label>
+                                    <input type="text" class="form-control" placeholder="Address">
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">State</label>
+                                            <input type="text" class="form-control" placeholder="State">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">City</label>
+                                            <input type="text" class="form-control" placeholder="City">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">Pincode</label>
+                                            <input type="password" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2
+                        class="credit-card-title h5 py-3 accordion-header d-flex justify-content-between align-items-center">
+                        <div class="form-check w-100 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseCC"
+                            aria-expanded="false">
+                            <label class="form-check-label pt-1" for="payment1">
+                                Credit Card
+                            </label>
+                        </div>
+                        <span>
+                            <svg width="34" height="25" xmlns="http://www.w3.org/2000/svg">
+                                <g fill-rule="nonzero" fill="#333840">
+                                    <path
+                                        d="M29.418 2.083c1.16 0 2.101.933 2.101 2.084v16.666c0 1.15-.94 2.084-2.1 2.084H4.202A2.092 2.092 0 0 1 2.1 20.833V4.167c0-1.15.941-2.084 2.102-2.084h25.215ZM4.203 0C1.882 0 0 1.865 0 4.167v16.666C0 23.135 1.882 25 4.203 25h25.215c2.321 0 4.203-1.865 4.203-4.167V4.167C33.62 1.865 31.739 0 29.418 0H4.203Z">
+                                    </path>
+                                    <path
+                                        d="M4.203 7.292c0-.576.47-1.042 1.05-1.042h4.203c.58 0 1.05.466 1.05 1.042v2.083c0 .575-.47 1.042-1.05 1.042H5.253c-.58 0-1.05-.467-1.05-1.042V7.292Zm0 6.25c0-.576.47-1.042 1.05-1.042H15.76c.58 0 1.05.466 1.05 1.042 0 .575-.47 1.041-1.05 1.041H5.253c-.58 0-1.05-.466-1.05-1.041Zm0 4.166c0-.575.47-1.041 1.05-1.041h2.102c.58 0 1.05.466 1.05 1.041 0 .576-.47 1.042-1.05 1.042H5.253c-.58 0-1.05-.466-1.05-1.042Zm6.303 0c0-.575.47-1.041 1.051-1.041h2.101c.58 0 1.051.466 1.051 1.041 0 .576-.47 1.042-1.05 1.042h-2.102c-.58 0-1.05-.466-1.05-1.042Zm6.304 0c0-.575.47-1.041 1.051-1.041h2.101c.58 0 1.05.466 1.05 1.041 0 .576-.47 1.042-1.05 1.042h-2.101c-.58 0-1.05-.466-1.05-1.042Zm6.304 0c0-.575.47-1.041 1.05-1.041h2.102c.58 0 1.05.466 1.05 1.041 0 .576-.47 1.042-1.05 1.042h-2.101c-.58 0-1.05-.466-1.05-1.042Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                    </h2>
+                    <!-- PayPal -->
+                    <div class="accordion-item mb-3 border">
+                        <h2 class="h5 px-4 py-3 accordion-header d-flex justify-content-between align-items-center">
+                            <div class="form-check w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapsePP" aria-expanded="false">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        American Express
+                                    </label>
+                                </div>
+                            </div>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55"
+                                    fill="none">
+                                    <g clip-path="url(#clip0_949_174)">
+                                        <path d="M0 55H54.9999V-2.6226e-06H0V55Z" fill="#006FCF" />
+                                        <path
+                                            d="M19.924 46.2971L41.6715 46.3433L45.087 42.5329L48.5269 46.3289H54.9999V40.7695L50.9458 36.3974L54.9999 32.065V26.6212L19.924 26.5897V46.2971Z"
+                                            fill="white" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M22.2669 44.1365V28.7585H35.3059V32.301H26.4885V34.7057H35.0957V38.1895H26.4885V40.5514H35.3059V44.1365L22.2669 44.1365Z"
+                                            fill="#006FCF" />
+                                        <path
+                                            d="M49.6554 28.7587L45.234 33.6328L40.8253 28.7587H35.2407L42.4558 36.4388L35.2408 44.1365H40.6736L45.1146 39.2136L49.6016 44.1365H54.9999V43.9182L47.9385 36.4388L54.9999 28.8798V28.7587H49.6554Z"
+                                            fill="#006FCF" />
+                                        <path
+                                            d="M47.0292 9.09762L45.2231 14.1498L43.423 9.09762H32.9848V15.8408L30.015 9.09762H21.5599L12.8761 28.8051H54.9999V9.09762H47.0292Z"
+                                            fill="white" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M23.7472 20.0786L25.7934 15.1874L27.8383 20.0786H23.7472ZM23.1608 11.2387L16.3375 26.6037H21.0175L22.3046 23.527H29.2799L30.5662 26.6037H35.3625L28.5675 11.2387H23.1608Z"
+                                            fill="#006FCF" />
+                                        <path
+                                            d="M35.2985 26.6011L39.4361 26.6012V16.047L43.3614 26.6012H47.0802L50.9258 16.0828V26.637L54.9999 26.6012V11.2363H48.6686L45.2617 20.7049L41.877 11.2589L35.2985 11.2362V26.6011Z"
+                                            fill="#006FCF" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_949_174">
+                                            <rect width="55" height="55" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </span>
+                        </h2>
+                        <div id="collapsePP" class="accordion-collapse collapse" data-bs-parent="#accordionPayment">
+                            <div class="accordion-body">
+                                <div class="px-2 col-lg-6 mb-3">
+                                    <label class="form-label">Email address</label>
+                                    <input type="email" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item mb-3 border">
+                        <h2 class="h5 px-4 py-3 accordion-header d-flex justify-content-between align-items-center">
+                            <div class="form-check w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapsePP" aria-expanded="false">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        MasterCard
+                                    </label>
+                                </div>
+                            </div>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="55" height="34" viewBox="0 0 55 34"
+                                    fill="none">
+                                    <g clip-path="url(#clip0_949_189)">
+                                        <path d="M34.9356 3.63611H20.0644V30.3639H34.9356V3.63611Z" fill="#FF5F00" />
+                                        <path
+                                            d="M21.0086 17C21.0086 11.8055 23.4163 6.84722 27.4764 3.6361C20.1116 -2.17223 9.44205 -0.897228 3.63519 6.51666C-2.17168 13.8833 -0.897003 24.5556 6.51501 30.3639C12.6996 35.2278 21.339 35.2278 27.5236 30.3639C23.4163 27.1528 21.0086 22.1944 21.0086 17Z"
+                                            fill="#EB001B" />
+                                        <path
+                                            d="M55 17C55 26.3972 47.3991 34 38.0043 34C34.1802 34 30.4978 32.725 27.5236 30.3639C34.8884 24.5556 36.1631 13.8833 30.3562 6.46944C29.5064 5.43055 28.5622 4.43888 27.5236 3.6361C34.8884 -2.17223 45.6051 -0.897228 51.3648 6.51666C53.7253 9.49166 55 13.175 55 17Z"
+                                            fill="#F79E1B" />
+                                        <path
+                                            d="M53.3948 27.5306V26.9639H53.6309V26.8694H53.0644V26.9639H53.3004V27.5306H53.3948ZM54.4807 27.5306V26.8694H54.2918L54.103 27.3417L53.9142 26.8694H53.7253V27.5306H53.867V27.0111L54.0558 27.4361H54.1974L54.3863 27.0111V27.5306H54.4807Z"
+                                            fill="#F79E1B" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_949_189">
+                                            <rect width="55" height="34" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </span>
+                        </h2>
+                        <div id="collapsePP" class="accordion-collapse collapse" data-bs-parent="#accordionPayment">
+                            <div class="accordion-body">
+                                <div class="px-2 col-lg-6 mb-3">
+                                    <label class="form-label">Email address</label>
+                                    <input type="email" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item mb-3 border">
+                        <h2 class="h5 px-4 py-3 accordion-header d-flex justify-content-between align-items-center">
+                            <div class="form-check w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapsePP" aria-expanded="false">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Visa
+                                    </label>
+                                </div>
+                            </div>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="55" height="18" viewBox="0 0 55 18"
+                                    fill="none">
+                                    <g clip-path="url(#clip0_949_196)">
+                                        <path
+                                            d="M35.8349 0C31.9348 0 28.4331 2.05412 28.4331 5.82353C28.4331 10.1647 34.6188 10.4612 34.6188 12.6212C34.6188 13.5318 33.5703 14.3576 31.809 14.3576C29.2928 14.3576 27.4056 13.2141 27.4056 13.2141L26.6088 17.0259C26.6088 17.0259 28.7686 18 31.6622 18C35.9398 18 39.2947 15.8612 39.2947 12.0071C39.2947 7.43294 33.0881 7.13647 33.0881 5.12471C33.0881 4.40471 33.9478 3.62118 35.7091 3.62118C37.7011 3.62118 39.3366 4.44706 39.3366 4.44706L40.1334 0.762353C40.1125 0.762353 38.3302 0 35.8349 0ZM0.104842 0.275294L0 0.825882C0 0.825882 1.63553 1.12235 3.12429 1.73647C5.03241 2.43529 5.15822 2.83765 5.49371 4.08706L8.99543 17.7035H13.6923L20.8845 0.275294H16.2085L11.5745 12.1341L9.68738 2.07529C9.51963 0.931765 8.63896 0.275294 7.54861 0.275294H0.104842ZM22.7716 0.275294L19.1022 17.7035H23.5684L27.2169 0.275294H22.7716ZM47.6401 0.275294C46.5707 0.275294 46.0046 0.847059 45.5852 1.86353L39.0431 17.7035H43.719L44.6207 15.0565H50.3241L50.8692 17.7035H55L51.4144 0.275294H47.6401ZM48.2482 4.99765L49.6321 11.5412H45.9207L48.2482 4.99765Z"
+                                            fill="#1434CB" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_949_196">
+                                            <rect width="55" height="18" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </span>
+                        </h2>
+
+
+                        <div id="collapsePP" class="accordion-collapse collapse" data-bs-parent="#accordionPayment">
+                            <div class="accordion-body">
+                                <div class="px-2 col-lg-6 mb-3">
+                                    <label class="form-label">Email address</label>
+                                    <input type="email" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="upi-container d-flex flex-md-row flex-sm-column">
+                        <div class="accordion-item col-lg-4 col-md-4 col-sm-12 mb-3 border p-0">
+                            <h2 class="h5 px-4 py-3 accordion-header d-flex justify-content-between align-items-center">
+                                <div class="form-check w-100 collapsed" data-bs-toggle="collapse"
+                                    data-bs-target="#collapsePP" aria-expanded="false">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            PhonePe
+                                        </label>
+                                    </div>
+                                </div>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="14" viewBox="0 0 50 14"
+                                        fill="none">
+                                        <g clip-path="url(#clip0_950_211)">
+                                            <path
+                                                d="M6.7871 13.9913C10.5355 13.9913 13.5742 10.8592 13.5742 6.99565C13.5742 3.13206 10.5355 0 6.7871 0C3.03869 0 0 3.13206 0 6.99565C0 10.8592 3.03869 13.9913 6.7871 13.9913Z"
+                                                fill="#5F259F" />
+                                            <path
+                                                d="M34.3323 10.9981V8.45744C34.3323 7.83096 34.1044 7.51772 33.5388 7.51772C33.3108 7.51772 33.0491 7.55253 32.8972 7.59603V11.3114C32.8972 11.4245 32.7875 11.5463 32.6693 11.5463H31.7998C31.69 11.5463 31.5719 11.4332 31.5719 11.3114V6.96955C31.5719 6.81294 31.6816 6.69982 31.7998 6.65632C32.3654 6.46489 32.9394 6.34308 33.5472 6.34308C34.9148 6.34308 35.6745 7.08267 35.6745 8.45744V11.3462C35.6745 11.4593 35.5648 11.5811 35.4466 11.5811H34.9148C34.5602 11.5811 34.3323 11.3114 34.3323 10.9981ZM37.7427 9.47546L37.7089 9.8235C37.7089 10.2934 38.0128 10.5631 38.5025 10.5631C38.8823 10.5631 39.22 10.45 39.5999 10.2499C39.6336 10.2499 39.6759 10.215 39.7096 10.215C39.7856 10.215 39.8194 10.2499 39.8616 10.2934C39.8953 10.3282 39.9713 10.45 39.9713 10.45C40.0473 10.5631 40.1233 10.7197 40.1233 10.8415C40.1233 11.0329 40.0135 11.2331 39.8616 11.3114C39.4479 11.5463 38.9499 11.6594 38.418 11.6594C37.8102 11.6594 37.3206 11.5028 36.9408 11.1896C36.5609 10.8415 36.333 10.3717 36.333 9.78V8.25731C36.333 7.04786 37.0927 6.29957 38.3843 6.29957C39.6336 6.29957 40.3596 7.00436 40.3596 8.25731V9.19702C40.3596 9.31014 40.2499 9.43195 40.1317 9.43195H37.7427V9.47546ZM37.7089 8.61405H39.1525V8.22251C39.1525 7.75265 38.8908 7.43941 38.4349 7.43941C37.9791 7.43941 37.7174 7.70914 37.7174 8.22251C37.7089 8.22251 37.7089 8.61405 37.7089 8.61405ZM47.3747 9.47546L47.3409 9.8235C47.3409 10.2934 47.6448 10.5631 48.1344 10.5631C48.5143 10.5631 48.8519 10.45 49.2318 10.2499C49.2656 10.2499 49.3078 10.215 49.3416 10.215C49.4175 10.215 49.4513 10.2499 49.4935 10.2934C49.5273 10.3282 49.6033 10.45 49.6033 10.45C49.6792 10.5631 49.7552 10.7197 49.7552 10.8415C49.7552 11.0329 49.6455 11.2331 49.4935 11.3114C49.0799 11.5463 48.5818 11.6594 48.05 11.6594C47.4422 11.6594 46.9526 11.5028 46.5727 11.1896C46.1928 10.8415 45.9649 10.3717 45.9649 9.78V8.25731C45.9649 7.04786 46.7246 6.29957 48.0162 6.29957C49.2656 6.29957 49.9916 7.00436 49.9916 8.25731V9.19702C49.9916 9.31014 49.8818 9.43195 49.7636 9.43195H47.3747V9.47546ZM47.3409 8.61405H48.7844V8.22251C48.7844 7.75265 48.5227 7.43941 48.0669 7.43941C47.611 7.43941 47.3493 7.70914 47.3493 8.22251V8.61405H47.3409ZM25.038 11.5811H25.5698C25.6796 11.5811 25.7978 11.468 25.7978 11.3462V8.45744C25.7978 7.12617 25.114 6.34308 23.9744 6.34308C23.6367 6.34308 23.2568 6.42139 23.0289 6.4997V5.05532C23.0289 4.74208 22.7672 4.47235 22.4633 4.47235H21.9315C21.8217 4.47235 21.7035 4.58546 21.7035 4.70728V11.3549C21.7035 11.468 21.8133 11.5898 21.9315 11.5898H22.801C22.9107 11.5898 23.0289 11.4767 23.0289 11.3549V7.67434C23.2146 7.59603 23.4847 7.56123 23.6705 7.56123C24.236 7.56123 24.464 7.83096 24.464 8.50094V11.0416C24.5062 11.3114 24.7341 11.5811 25.038 11.5811ZM30.7615 8.30082V9.74519C30.7615 10.9546 29.9679 11.7029 28.6342 11.7029C27.3426 11.7029 26.5069 10.9633 26.5069 9.74519V8.30082C26.5069 7.09137 27.3004 6.34308 28.6342 6.34308C29.9679 6.34308 30.7615 7.09137 30.7615 8.30082ZM29.4361 8.30082C29.4361 7.83096 29.1744 7.51772 28.6764 7.51772C28.1783 7.51772 27.9166 7.78745 27.9166 8.30082V9.74519C27.9166 10.215 28.1783 10.4848 28.6764 10.4848C29.1744 10.4848 29.4361 10.215 29.4361 9.74519V8.30082ZM20.9776 7.63954C20.9776 8.88379 20.0659 9.74519 18.8587 9.74519C18.5548 9.74519 18.2931 9.71039 18.023 9.58857V11.3462C18.023 11.4593 17.9132 11.5811 17.795 11.5811H16.9256C16.8158 11.5811 16.6976 11.468 16.6976 11.3462V5.13363C16.6976 4.97701 16.8074 4.8639 16.9256 4.82039C17.4911 4.62897 18.0652 4.50716 18.673 4.50716C20.0405 4.50716 20.986 5.36856 20.986 6.69982C20.9776 6.69982 20.9776 7.63954 20.9776 7.63954ZM19.6184 6.62151C19.6184 5.99504 19.2048 5.6818 18.6308 5.6818C18.2931 5.6818 18.0652 5.79491 18.0652 5.79491V8.37913C18.2931 8.49224 18.4028 8.53574 18.673 8.53574C19.2386 8.53574 19.6607 8.1877 19.6607 7.59603V6.62151H19.6184ZM45.4837 7.63954C45.4837 8.89249 44.572 9.75389 43.3564 9.75389C43.0525 9.75389 42.7908 9.71909 42.5207 9.59727V11.3549C42.5207 11.468 42.411 11.5898 42.2928 11.5898H41.4233C41.3135 11.5898 41.1954 11.4767 41.1954 11.3549V5.13363C41.1954 4.97701 41.3051 4.8639 41.4233 4.82039C41.9889 4.62897 42.5629 4.50716 43.1707 4.50716C44.5383 4.50716 45.4837 5.36856 45.4837 6.69982C45.4837 6.69982 45.4837 7.63954 45.4837 7.63954ZM44.1162 6.62151C44.1162 5.99504 43.7025 5.6818 43.1285 5.6818C42.7908 5.6818 42.5629 5.79491 42.5629 5.79491V8.37913C42.7908 8.49224 42.9006 8.53574 43.1707 8.53574C43.7363 8.53574 44.1584 8.1877 44.1584 7.59603V6.62151H44.1162Z"
+                                                fill="#5F259F" />
+                                            <path
+                                                d="M9.86831 5.16843C9.86831 4.8987 9.64039 4.66377 9.37869 4.66377H8.46699L6.3819 2.20137C6.19619 1.96644 5.89229 1.88813 5.58839 1.96644L4.87084 2.20137C4.7611 2.23617 4.71889 2.39279 4.79487 2.4711L7.07412 4.69857H3.62148C3.51174 4.69857 3.43576 4.77688 3.43576 4.88999V5.28154C3.43576 5.55127 3.66369 5.7862 3.92538 5.7862H4.4572V7.67433C4.4572 9.0839 5.17474 9.9018 6.39034 9.9018C6.77022 9.9018 7.07412 9.867 7.45399 9.71038V10.9633C7.45399 11.3114 7.71569 11.5898 8.06179 11.5898H8.59362C8.70336 11.5898 8.82154 11.4767 8.82154 11.3549V5.7688H9.69104C9.80078 5.7688 9.87675 5.69049 9.87675 5.57738C9.86831 5.55998 9.86831 5.16843 9.86831 5.16843ZM7.43711 8.53574C7.20919 8.64885 6.90529 8.69236 6.67736 8.69236C6.06956 8.69236 5.76566 8.37912 5.76566 7.67433V5.7949H7.43711V8.53574Z"
+                                                fill="white" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_950_211">
+                                                <rect width="50" height="14" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </span>
+                            </h2>
+                            <div id="collapsePP" class="accordion-collapse collapse" data-bs-parent="#accordionPayment">
+                                <div class="accordion-body">
+                                    <div class="px-2 col-lg-6 mb-3">
+                                        <label class="form-label">Email address</label>
+                                        <input type="email" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item col-lg-4 col-md-4 col-sm-12 mb-3 border p-0">
+                            <h2 class="h5 px-4 py-3 accordion-header d-flex justify-content-between align-items-center">
+                                <div class="form-check w-100 collapsed" data-bs-toggle="collapse"
+                                    data-bs-target="#collapsePP" aria-expanded="false">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            GPay
+                                        </label>
+                                    </div>
+                                </div>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="24" viewBox="0 0 50 24"
+                                        fill="none">
+                                        <g clip-path="url(#clip0_950_216)">
+                                            <path
+                                                d="M23.625 12.4095V18.2677H21.75V3.77954H26.625C27.8125 3.77954 28.9375 4.22049 29.8125 5.03938C30.6875 5.79529 31.125 6.92915 31.125 8.126C31.125 9.32285 30.6875 10.3937 29.8125 11.2126C28.9375 12.0315 27.875 12.4725 26.625 12.4725L23.625 12.4095ZM23.625 5.54332V10.5827H26.75C27.4375 10.5827 28.125 10.3307 28.5625 9.82679C29.5625 8.8819 29.5625 7.3071 28.625 6.36222L28.5625 6.29923C28.0625 5.79529 27.4375 5.48033 26.75 5.54332H23.625Z"
+                                                fill="#5F6368" />
+                                            <path
+                                                d="M35.4375 8.06299C36.8125 8.06299 37.875 8.44094 38.6875 9.19685C39.5 9.95275 39.875 10.9606 39.875 12.2205V18.2677H38.125V16.8819H38.0625C37.3125 18.0157 36.25 18.5827 35 18.5827C33.9375 18.5827 33 18.2677 32.25 17.6378C31.5625 17.0079 31.125 16.126 31.125 15.1811C31.125 14.1732 31.5 13.3543 32.25 12.7244C33 12.0945 34.0625 11.8425 35.3125 11.8425C36.4375 11.8425 37.3125 12.0315 38 12.4724V12.0315C38 11.4016 37.75 10.7716 37.25 10.3937C36.75 9.95275 36.125 9.70078 35.4375 9.70078C34.375 9.70078 33.5625 10.1417 33 11.0236L31.375 10.0157C32.375 8.69291 33.6875 8.06299 35.4375 8.06299ZM33.0625 15.2441C33.0625 15.748 33.3125 16.189 33.6875 16.4409C34.125 16.7559 34.625 16.9449 35.125 16.9449C35.875 16.9449 36.625 16.6299 37.1875 16.063C37.8125 15.4961 38.125 14.8031 38.125 14.0472C37.5625 13.6063 36.75 13.3543 35.6875 13.3543C34.9375 13.3543 34.3125 13.5433 33.8125 13.9213C33.3125 14.2362 33.0625 14.6772 33.0625 15.2441Z"
+                                                fill="#5F6368" />
+                                            <path
+                                                d="M50 8.37796L43.8125 22.6772H41.9375L44.25 17.7008L40.1875 8.44095H42.1875L45.125 15.5591H45.1875L48.0625 8.44095H50V8.37796Z"
+                                                fill="#5F6368" />
+                                            <path
+                                                d="M16.1875 11.1496C16.1875 10.5827 16.125 10.0158 16.0625 9.44882H8.25V12.6614H12.6875C12.5 13.6693 11.9375 14.6142 11.0625 15.1811V17.2598H13.75C15.3125 15.811 16.1875 13.6693 16.1875 11.1496Z"
+                                                fill="#4285F4" />
+                                            <path
+                                                d="M8.25 19.2756C10.5 19.2756 12.375 18.5197 13.75 17.2598L11.0625 15.1811C10.3125 15.685 9.375 16 8.25 16C6.125 16 4.25 14.5512 3.625 12.5354H0.875V14.6772C2.3125 17.5118 5.125 19.2756 8.25 19.2756Z"
+                                                fill="#34A853" />
+                                            <path
+                                                d="M3.625 12.5354C3.25 11.5275 3.25 10.3937 3.625 9.32282V7.18109H0.875C-0.3125 9.5118 -0.3125 12.2835 0.875 14.6772L3.625 12.5354Z"
+                                                fill="#FBBC04" />
+                                            <path
+                                                d="M8.25 5.92125C9.4375 5.92125 10.5625 6.3622 11.4375 7.18109L13.8125 4.78739C12.3125 3.40157 10.3125 2.58267 8.3125 2.64566C5.1875 2.64566 2.3125 4.40944 0.9375 7.24409L3.6875 9.38582C4.25 7.37007 6.125 5.92125 8.25 5.92125Z"
+                                                fill="#EA4335" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_950_216">
+                                                <rect width="50" height="24" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </span>
+                            </h2>
+                            <div id="collapsePP" class="accordion-collapse collapse" data-bs-parent="#accordionPayment">
+                                <div class="accordion-body">
+                                    <div class="px-2 col-lg-6 mb-3">
+                                        <label class="form-label">Email address</label>
+                                        <input type="email" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item col-lg-4 col-md-4 col-sm-12 mb-3 border p-0">
+                            <h2 class="h5 px-4 py-3 accordion-header d-flex justify-content-between align-items-center">
+                                <div class="form-check w-100 collapsed" data-bs-toggle="collapse"
+                                    data-bs-target="#collapsePP" aria-expanded="false">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            PayTM
+                                        </label>
+                                    </div>
+                                </div>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="16" viewBox="0 0 50 16"
+                                        fill="none">
+                                        <g clip-path="url(#clip0_950_199)">
+                                            <path
+                                                d="M49.819 4.72593C49.3654 3.40373 48.1293 2.45427 46.6774 2.45427H46.647C45.7031 2.45427 44.8525 2.85477 44.247 3.49772C43.6405 2.85477 42.7899 2.45427 41.8471 2.45427H41.8167C40.987 2.45427 40.2286 2.76399 39.6461 3.27664V3.01604C39.6262 2.75652 39.4167 2.55253 39.158 2.55253H36.9308C36.6585 2.55253 36.4385 2.77681 36.4385 3.05556V15.3858C36.4385 15.6645 36.6585 15.8888 36.9308 15.8888H39.158C39.4062 15.8888 39.6105 15.6998 39.643 15.4552L39.6419 6.6035C39.6419 6.57252 39.643 6.54369 39.6461 6.51485C39.6817 6.11969 39.9656 5.79501 40.414 5.75443H40.4967H40.7303H40.8246C41.0121 5.77152 41.1703 5.8388 41.295 5.94026C41.4888 6.09726 41.5967 6.33863 41.5967 6.6035L41.6051 15.4114C41.6051 15.6901 41.8261 15.9155 42.0974 15.9155H44.3245C44.5875 15.9155 44.8012 15.7019 44.8138 15.436L44.8127 6.59175C44.8117 6.30125 44.9437 6.03852 45.1752 5.88259C45.2893 5.80783 45.4266 5.75763 45.5848 5.74268H45.6675H45.9011H45.9954C46.4773 5.7854 46.7685 6.15814 46.7675 6.59175L46.7758 15.3879C46.7758 15.6666 46.9969 15.8909 47.2682 15.8909H49.4953C49.7666 15.8909 49.9877 15.6666 49.9877 15.3879V5.92745C49.9877 5.28237 49.9164 5.00789 49.819 4.72593Z"
+                                                fill="#54C1F0" />
+                                            <path
+                                                d="M34.7419 2.5847H33.468V0.480713C33.468 0.478577 33.468 0.476441 33.468 0.474305C33.468 0.221186 33.2669 0.0161281 33.0186 0.0161281C32.9893 0.0161281 32.961 0.0204 32.9338 0.02574C31.5216 0.420905 31.8045 2.41488 29.2264 2.5847H29.1688H28.9761C28.9384 2.5847 28.9027 2.59004 28.8682 2.59751C28.6482 2.64771 28.4827 2.84743 28.4827 3.08666V5.35726C28.4827 5.63387 28.7037 5.85922 28.9761 5.85922H30.3201L30.318 15.4874C30.318 15.7618 30.5359 15.984 30.8051 15.984H33.0071C33.2753 15.984 33.4932 15.7618 33.4932 15.4874L33.4942 5.85922H34.7419C35.0132 5.85922 35.2342 5.63387 35.2342 5.35726V3.08666C35.2342 2.81005 35.0132 2.5847 34.7419 2.5847Z"
+                                                fill="#54C1F0" />
+                                            <path
+                                                d="M26.7289 2.58469H24.5018C24.2305 2.58469 24.0105 2.81004 24.0105 3.08666V7.78164C24.0053 8.07214 23.7748 8.30497 23.4888 8.30497H22.5565C22.2674 8.30497 22.0338 8.06787 22.0338 7.7731L22.0254 3.08666C22.0254 2.81004 21.8043 2.58469 21.533 2.58469H19.3059C19.0335 2.58469 18.8135 2.81004 18.8135 3.08666V8.23234C18.8135 10.1868 20.1806 11.5806 22.0987 11.5806C22.0987 11.5806 23.5381 11.5806 23.5821 11.5891C23.8418 11.619 24.044 11.8412 24.044 12.1146C24.044 12.3848 23.846 12.6059 23.5894 12.639C23.5768 12.6411 23.5653 12.6443 23.5517 12.6464L20.2948 12.6582C20.0224 12.6582 19.8024 12.8835 19.8024 13.1601V15.4297C19.8024 15.7074 20.0224 15.9316 20.2948 15.9316H23.9361C25.8553 15.9316 27.2213 14.539 27.2213 12.5834V3.08666C27.2213 2.81004 27.0013 2.58469 26.7289 2.58469Z"
+                                                fill="#233266" />
+                                            <path
+                                                d="M5.17194 6.74512V7.80459V8.14635C5.17194 8.44005 4.93833 8.67929 4.65025 8.67929L3.23709 8.68036V5.87255H4.65025C4.93833 5.87255 5.17194 6.10965 5.17194 6.40442V6.74512ZM5.36783 2.58414H0.499803C0.232674 2.58414 0.0168762 2.80522 0.0168762 3.0765V5.30116C0.0168762 5.30544 0.0179237 5.30971 0.0179237 5.31398C0.0179237 5.32466 0.0168762 5.33534 0.0168762 5.34495V12.4803V15.4142C0.0168762 15.6876 0.218008 15.9108 0.467329 15.9172H0.509231H2.73635C3.00767 15.9172 3.22871 15.6929 3.22871 15.4152L3.23709 11.9645H5.36783C7.15079 11.9645 8.3932 10.7032 8.3932 8.87794V5.67497C8.3932 3.84974 7.15079 2.58414 5.36783 2.58414Z"
+                                                fill="#233266" />
+                                            <path
+                                                d="M14.4126 12.0757V12.4303C14.4126 12.4592 14.4084 12.4869 14.4042 12.5136C14.399 12.5393 14.3917 12.5638 14.3833 12.5873C14.3141 12.786 14.1193 12.9302 13.8878 12.9302H12.9607C12.6716 12.9302 12.4359 12.7059 12.4359 12.4303V12.0021C12.4359 11.9967 12.4348 11.9914 12.4348 11.986L12.4359 10.8465V10.8443V10.7183V10.4897L12.4369 10.4865C12.4379 10.2121 12.6716 9.98992 12.9607 9.98992H13.8878C14.178 9.98992 14.4126 10.2131 14.4126 10.4897V12.0757ZM14.0585 2.59713H10.9682C10.6948 2.59713 10.4738 2.8086 10.4738 3.06813V3.95137C10.4738 3.95671 10.4748 3.96312 10.4748 3.96846C10.4748 3.97487 10.4738 3.98128 10.4738 3.98769V5.19774C10.4738 5.47222 10.7084 5.69651 10.9975 5.69651H13.9402C14.1727 5.73389 14.3571 5.9069 14.3833 6.17711V6.46975C14.3571 6.72714 14.1748 6.91511 13.9527 6.93647H12.4956C10.5576 6.93647 9.17688 8.24906 9.17688 10.0924V12.6653V12.7326C9.17688 14.5653 10.3638 15.8693 12.2881 15.8693H16.3265C17.0514 15.8693 17.6391 15.3097 17.6391 14.6208V6.00516C17.6391 3.91613 16.5832 2.59713 14.0585 2.59713Z"
+                                                fill="#233266" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_950_199">
+                                                <rect width="50" height="16" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </span>
+                            </h2>
+                            <div id="collapsePP" class="accordion-collapse collapse" data-bs-parent="#accordionPayment">
+                                <div class="accordion-body">
+                                    <div class="px-2 col-lg-6 mb-3">
+                                        <label class="form-label">Email address</label>
+                                        <input type="email" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <!-- Right -->
+            <div class="col-lg-3">
+                <div id="personal-details-card" class="card position-sticky top-0">
+                    <div class="p-3 bg-light bg-opacity-10">
+                        <h6 class="personal-details-card-title mb-3">Order Summary</h6>
+                        <div class="d-flex justify-content-between mb-1 small">
+                            <span>Subtotal</span><span id="total-price" class="price-value"></span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1 small">
+                            <span>Shipping</span>
+                            <div>$<span id="delivery">10.80</span></div>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1 small">
+                            <span>
+                                Seasonal Offer
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 118 118"
+                                    fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M67.9627 3.87545C66.7645 2.64872 65.3332 1.67393 63.7529 1.00839C62.1726 0.342849 60.4751 0 58.7604 0C57.0456 0 55.3481 0.342849 53.7678 1.00839C52.1875 1.67393 50.7562 2.64872 49.558 3.87545L43.905 9.66363C42.6892 10.9095 41.2332 11.8956 39.6252 12.5622C38.0171 13.2289 36.2905 13.5622 34.5499 13.542L26.4582 13.4421C24.7432 13.4216 23.0414 13.7443 21.453 14.3912C19.8646 15.038 18.4215 15.996 17.2088 17.2088C15.996 18.4215 15.038 19.8646 14.3912 21.453C13.7443 23.0414 13.4216 24.7432 13.4421 26.4582L13.5361 34.5499C13.5563 36.2905 13.223 38.0171 12.5563 39.6252C11.8897 41.2332 10.9036 42.6892 9.65776 43.905L3.87545 49.558C2.64872 50.7562 1.67393 52.1875 1.00839 53.7678C0.342849 55.3481 0 57.0456 0 58.7604C0 60.4751 0.342849 62.1726 1.00839 63.7529C1.67393 65.3332 2.64872 66.7645 3.87545 67.9627L9.66363 73.6157C12.1787 76.072 13.5831 79.4568 13.542 82.9708L13.4421 91.0625C13.4216 92.7775 13.7443 94.4793 14.3912 96.0677C15.038 97.6561 15.996 99.0992 17.2088 100.312C18.4215 101.525 19.8646 102.483 21.453 103.13C23.0414 103.776 24.7432 104.099 26.4582 104.079L34.5499 103.985C36.2905 103.964 38.0171 104.298 39.6252 104.964C41.2332 105.631 42.6892 106.617 43.905 107.863L49.558 113.645C54.6058 118.816 62.9149 118.816 67.9627 113.645L73.6157 107.857C74.8315 106.611 76.2875 105.625 77.8955 104.959C79.5036 104.292 81.2302 103.959 82.9708 103.979L91.0625 104.079C92.7775 104.099 94.4793 103.776 96.0677 103.13C97.6561 102.483 99.0992 101.525 100.312 100.312C101.525 99.0992 102.483 97.6561 103.13 96.0677C103.776 94.4793 104.099 92.7775 104.079 91.0625L103.985 82.9708C103.964 81.2302 104.298 79.5036 104.964 77.8955C105.631 76.2875 106.617 74.8315 107.863 73.6157L113.645 67.9627C118.816 62.9149 118.816 54.6058 113.645 49.558L107.857 43.905C106.611 42.6892 105.625 41.2332 104.959 39.6252C104.292 38.0171 103.959 36.2905 103.979 34.5499L104.079 26.4582C104.099 24.7432 103.776 23.0414 103.13 21.453C102.483 19.8646 101.525 18.4215 100.312 17.2088C99.0992 15.996 97.6561 15.038 96.0677 14.3912C94.4793 13.7443 92.7775 13.4216 91.0625 13.4421L82.9708 13.5361C81.2302 13.5563 79.5036 13.223 77.8955 12.5563C76.2875 11.8897 74.8315 10.9036 73.6157 9.65776L67.9627 3.87545ZM41.1314 49.9459C42.2889 49.9459 43.4351 49.7179 44.5045 49.2749C45.574 48.8319 46.5457 48.1827 47.3642 47.3642C48.1827 46.5457 48.8319 45.574 49.2749 44.5045C49.7179 43.4351 49.9459 42.2889 49.9459 41.1314C49.9459 39.9738 49.7179 38.8276 49.2749 37.7582C48.8319 36.6888 48.1827 35.7171 47.3642 34.8986C46.5457 34.0801 45.574 33.4308 44.5045 32.9878C43.4351 32.5449 42.2889 32.3169 41.1314 32.3169C38.7936 32.3169 36.5516 33.2455 34.8986 34.8986C33.2455 36.5516 32.3169 38.7936 32.3169 41.1314C32.3169 43.4691 33.2455 45.7111 34.8986 47.3642C36.5516 49.0172 38.7936 49.9459 41.1314 49.9459ZM76.3893 85.2038C78.7271 85.2038 80.9691 84.2752 82.6221 82.6221C84.2752 80.9691 85.2038 78.7271 85.2038 76.3893C85.2038 74.0516 84.2752 71.8096 82.6221 70.1566C80.9691 68.5035 78.7271 67.5748 76.3893 67.5748C74.0516 67.5748 71.8096 68.5035 70.1566 70.1566C68.5035 71.8096 67.5748 74.0516 67.5748 76.3893C67.5748 78.7271 68.5035 80.9691 70.1566 82.6221C71.8096 84.2752 74.0516 85.2038 76.3893 85.2038ZM80.9611 36.5596C81.5617 37.1599 82.0381 37.8726 82.3631 38.657C82.6882 39.4415 82.8554 40.2823 82.8554 41.1314C82.8554 41.9805 82.6882 42.8213 82.3631 43.6057C82.0381 44.3902 81.5617 45.1029 80.9611 45.7032L45.7032 80.9611C44.4906 82.1736 42.8461 82.8548 41.1314 82.8548C39.4166 82.8548 37.7721 82.1736 36.5596 80.9611C35.3471 79.7486 34.6659 78.1041 34.6659 76.3893C34.6659 74.6746 35.3471 73.0301 36.5596 71.8176L71.8176 36.5596C72.4178 35.959 73.1305 35.4826 73.915 35.1576C74.6994 34.8326 75.5402 34.6653 76.3893 34.6653C77.2385 34.6653 78.0792 34.8326 78.8637 35.1576C79.6481 35.4826 80.3608 35.959 80.9611 36.5596Z"
+                                        fill="#59ACFF" />
+                                </svg>
+                            </span>
+                            <span id="offer-price">-$<span id="offer">32.45</span></span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-4 mt-2 small">
+                            <span class="total-price-title">TOTAL</span><span class="price-value">$<span
+                                    id="grand">0</span></span>
+                        </div>
+                        <div class="form-check mb-1 small">
+                            <input class="form-check-input" type="checkbox" value="" id="tnc">
+                            <label class="form-check-label" for="tnc">
+                                I agree to the <a href="#">terms and conditions</a>
+                            </label>
+                        </div>
+                        <div class="form-check mb-3 small">
+                            <input class="form-check-input" type="checkbox" value="" id="subscribe">
+                            <label class="form-check-label" for="subscribe">
+                                Get emails about product updates and events. If you change your mind, you can
+                                unsubscribe at any time. <a href="#">Privacy Policy</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="checkout-section">
+            <a id="proceed-to-checkout">
+                <button onclick="razorPay()" id="rzp-button1" type="submit" class="btn">Proceed to Checkout
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <script type="module" src="./cart.js" ></script>
+    <script src="./checkout.js" ></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</body>
+
+</html>

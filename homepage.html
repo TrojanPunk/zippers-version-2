@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Cards</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Poppins:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top bg-white">
+        <div class="container">
+            <a class="navbar-brand primary-color-black font-weight-bold" href="homepage.html">ZIPPERS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto d-flex">
+                    <li class="nav-item px">
+                        <a class="nav-link primary-color-gray" id="categoryAll">All</a>
+                    </li>
+                    <li class="nav-item px">
+                        <a class="nav-link primary-color-gray" id="categoryMens">Men's Clothing</a>
+                    </li>
+                    <li class="nav-item px">
+                        <a class="nav-link primary-color-gray" id="categoryWomens">Women's Clothing</a>
+                    </li>
+                    <li class="nav-item px">
+                        <a class="nav-link primary-color-gray" id="categoryHardware">Electronics</a>
+                    </li>
+                </ul>
+                <div class="navbar-text">
+                    <button class="btn material-symbols-outlined primary-color-black bg-green rounded-circle"
+                        href="cart.html">
+                        shopping_cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section-container d-flex justify-content-between">
+        <div class="hero-text d-flex flex-column">
+            <div class="hero-titles">
+                <h1 class="hero-title font-weight-bold">Quality is remembered long after the price is forgotten</h1>
+                <p class="hero-subtitle">Paul Mescal and Global Brand Ambassador Xiao Zhan celebrate the iconic style in
+                    a new campaign.</p>
+            </div>
+            <button onclick="window.scrollTo({top: 1900, behavior: 'smooth'})" id="shop-now"
+                class="shop-now-button btn bg-green primary-color-black">Shop Now</button>
+        </div>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="img-box d-block w-100"
+                        src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1995&q=80"
+                        alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="img-box d-block w-100"
+                        src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
+                        alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="img-box d-block w-100"
+                        src="https://images.unsplash.com/photo-1560343090-f0409e92791a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80"
+                        alt="Third slide">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="exclusive-section d-flex justify-content-between">
+        <div class="exclusive-images d-flex flex-column align-items-center">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner rounded-0" id="exclusive-slider">
+                    <div class="carousel-item exclusive-item active">
+                        <img class="d-block w-100" src="assets/images/1.png" alt="First slide">
+                    </div>
+                    <div class="carousel-item exclusive-item">
+                        <img class="d-block w-100" src="assets/images/2.png" alt="Second slide">
+                    </div>
+                    <div class="carousel-item exclusive-item">
+                        <img class="d-block w-100" src="assets/images/3.png" alt="Third slide">
+                    </div>
+                </div>
+            </div>
+            <div class="static-images d-flex">
+                <div class="image-container-exclusive">
+                    <img src="https://images.unsplash.com/photo-1646172312876-cba7f4103b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1969&q=80"
+                        alt="">
+                </div>
+                <div class="image-container-exclusive">
+                    <img src="https://images.unsplash.com/photo-1646172312876-cba7f4103b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1969&q=80"
+                        alt="">
+                </div>
+                <div class="image-container-exclusive">
+                    <img src="https://images.unsplash.com/photo-1646172312876-cba7f4103b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1969&q=80"
+                        alt="">
+                </div>
+            </div>
+        </div>
+        <div class="exclusive-text d-flex flex-column">
+            <h5 class="exclusive-heading">
+                A glimpse into this season's exclusive collection
+            </h5>
+            <h1 class="grab-the-deal">GRAB. THE DEAL.</h1>
+        </div>
+    </div>
+
+    <svg width="100%" height="auto" viewBox="0 0 320 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M0.736 52V44.44L31.912 6.856L33.352 11.104H1.312V1.6H43.72V9.16L12.616 46.744L11.176 42.496H44.8V52H0.736ZM52.2807 52V1.6H63.9447V52H52.2807ZM75.9057 52V1.6H97.7217C102.234 1.6 106.122 2.344 109.386 3.832C112.65 5.272 115.17 7.36 116.946 10.096C118.722 12.832 119.61 16.096 119.61 19.888C119.61 23.632 118.722 26.872 116.946 29.608C115.17 32.344 112.65 34.456 109.386 35.944C106.122 37.384 102.234 38.104 97.7217 38.104H82.3857L87.5697 32.848V52H75.9057ZM87.5697 34.144L82.3857 28.6H97.0737C100.674 28.6 103.362 27.832 105.138 26.296C106.914 24.76 107.802 22.624 107.802 19.888C107.802 17.104 106.914 14.944 105.138 13.408C103.362 11.872 100.674 11.104 97.0737 11.104H82.3857L87.5697 5.56V34.144ZM127.937 52V1.6H149.753C154.265 1.6 158.153 2.344 161.417 3.832C164.681 5.272 167.201 7.36 168.977 10.096C170.753 12.832 171.641 16.096 171.641 19.888C171.641 23.632 170.753 26.872 168.977 29.608C167.201 32.344 164.681 34.456 161.417 35.944C158.153 37.384 154.265 38.104 149.753 38.104H134.417L139.601 32.848V52H127.937ZM139.601 34.144L134.417 28.6H149.105C152.705 28.6 155.393 27.832 157.169 26.296C158.945 24.76 159.833 22.624 159.833 19.888C159.833 17.104 158.945 14.944 157.169 13.408C155.393 11.872 152.705 11.104 149.105 11.104H134.417L139.601 5.56V34.144ZM190.696 21.904H214.96V30.976H190.696V21.904ZM191.56 42.64H218.992V52H179.968V1.6H218.056V10.96H191.56V42.64ZM228.273 52V1.6H250.089C254.601 1.6 258.489 2.344 261.753 3.832C265.017 5.272 267.537 7.36 269.313 10.096C271.089 12.832 271.977 16.096 271.977 19.888C271.977 23.632 271.089 26.872 269.313 29.608C267.537 32.296 265.017 34.36 261.753 35.8C258.489 37.24 254.601 37.96 250.089 37.96H234.753L239.937 32.848V52H228.273ZM260.313 52L247.713 33.712H260.169L272.913 52H260.313ZM239.937 34.144L234.753 28.672H249.441C253.041 28.672 255.729 27.904 257.505 26.368C259.281 24.784 260.169 22.624 260.169 19.888C260.169 17.104 259.281 14.944 257.505 13.408C255.729 11.872 253.041 11.104 249.441 11.104H234.753L239.937 5.56V34.144ZM297.778 52.864C293.746 52.864 289.882 52.336 286.186 51.28C282.49 50.176 279.514 48.76 277.258 47.032L281.218 38.248C283.378 39.784 285.922 41.056 288.85 42.064C291.826 43.024 294.826 43.504 297.85 43.504C300.154 43.504 302.002 43.288 303.394 42.856C304.834 42.376 305.89 41.728 306.562 40.912C307.234 40.096 307.57 39.16 307.57 38.104C307.57 36.76 307.042 35.704 305.986 34.936C304.93 34.12 303.538 33.472 301.81 32.992C300.082 32.464 298.162 31.984 296.05 31.552C293.986 31.072 291.898 30.496 289.786 29.824C287.722 29.152 285.826 28.288 284.098 27.232C282.37 26.176 280.954 24.784 279.85 23.056C278.794 21.328 278.266 19.12 278.266 16.432C278.266 13.552 279.034 10.936 280.57 8.584C282.154 6.184 284.506 4.288 287.626 2.896C290.794 1.456 294.754 0.735999 299.506 0.735999C302.674 0.735999 305.794 1.12 308.866 1.888C311.938 2.608 314.65 3.712 317.002 5.2L313.402 14.056C311.05 12.712 308.698 11.728 306.346 11.104C303.994 10.432 301.69 10.096 299.434 10.096C297.178 10.096 295.33 10.36 293.89 10.888C292.45 11.416 291.418 12.112 290.794 12.976C290.17 13.792 289.858 14.752 289.858 15.856C289.858 17.152 290.386 18.208 291.442 19.024C292.498 19.792 293.89 20.416 295.618 20.896C297.346 21.376 299.242 21.856 301.306 22.336C303.418 22.816 305.506 23.368 307.57 23.992C309.682 24.616 311.602 25.456 313.33 26.512C315.058 27.568 316.45 28.96 317.506 30.688C318.61 32.416 319.162 34.6 319.162 37.24C319.162 40.072 318.37 42.664 316.786 45.016C315.202 47.368 312.826 49.264 309.658 50.704C306.538 52.144 302.578 52.864 297.778 52.864Z"
+            fill="url(#paint0_linear_13_2)" />
+        <defs>
+            <linearGradient id="paint0_linear_13_2" x1="160" y1="-18" x2="160" y2="70" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#D1ED7C" />
+                <stop offset="0.572917" stop-color="#D1ED7C" stop-opacity="0.520833" />
+                <stop offset="0.855903" stop-color="#D1ED7C" stop-opacity="0" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+
+
+    <div class="row container-fluid contenedor text-center justify-content-center">
+        <div id="mens-card" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto ">
+            <div class="ver_mas text-center">
+                <span class="lnr lnr-eye"></span>
+            </div>
+            <article class="text-left">
+                <h2>MEN'S <br>CLOTHING</h2>
+                <h4>Shop for the seasonal jackets and cargos</h4>
+            </article>
+            <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&q=80&w=1707&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="">
+        </div>
+        <div id="womens-card" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto">
+            <div class="ver_mas text-center">
+                <span id="click" class="lnr lnr-eye"></span>
+            </div>
+            <article class="text-left">
+                <h2>WOMEN'S <br>CLOTHING</h2>
+                <h4>Find the latest collection of Skorts and Crop Tops</h4>
+            </article>
+            <img src="https://images.unsplash.com/photo-1552874869-5c39ec9288dc?auto=format&fit=crop&q=80&w=1887&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="">
+        </div>
+        <div id="hardware-card" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 container_foto">
+            <div class="ver_mas text-center">
+                <span class="lnr lnr-eye"></span>
+            </div>
+            <article class="text-left">
+                <h2>ELECTRONICS</h2>
+                <h4>Check out the new releases of Mobile Phones and Laptops</h4>
+            </article>
+            <img src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&q=80&w=1887&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="">
+        </div>
+
+    </div>
+
+
+
+    <div class="card-container">
+        <div class="sorting-filter">
+            <select id="sort-by">
+                <option value="rating">Rating</option>
+                <option value="reviews">Reviews</option>
+                <option value="name">Name</option>
+                <option value="price">Price</option>
+            </select>
+            <button class="sort-button btn bg-green" id="sort-button">Sort</button>
+        </div>
+
+        <div class="row" id="productCards"></div>
+    </div>
+
+    <script type="module" src="homepage.js" defer></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
