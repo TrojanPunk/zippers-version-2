@@ -1,27 +1,46 @@
 import { addToCart } from "./utilities.js";
 import { getProductById } from "./utilities.js";
+function increaseQuantity(productId) {
+    const cart = getCartFromLocalStorage();
+    let updatedCart = cart.map((cartItem) => {
+        if (cartItem.id === productId) {
+            console.error(cartItem.quantity);
+            cartItem.quantity++;
+            console.error(cartItem.quantity);
+            cartItem.currentPrice = cartItem.price * cartItem.quantity;
+            console.log(cartItem, cartItem.currentPrice, cartItem.quantity);
+            document.getElementById("price-" + (cartItem.id).toString()).innerText = '$' + cartItem.currentPrice.toFixed(2);
+            document.getElementById("quantity-" + (cartItem.id).toString()).innerText = cartItem.quantity;
+        }
+        return cartItem;
+    });
+    saveCartToLocalStorage(updatedCart);
+    calculateTotalPrice();
+    grandPrice();
+}
 function displayCartItems() {
     console.warn('here');
-    const CART_ITEMS_CONTAINER = document.getElementById('cart-items');
-    const CART = getCartFromLocalStorage();
-    const CART_STATUS = document.getElementById('empty-cart');
-    console.log(CART);
-    if (CART && CART.length > 0) {
-        CART.forEach((cartItem) => {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cart = getCartFromLocalStorage();
+    const cartStatus = document.getElementById('empty-cart');
+    if (cart && cart.length > 0) {
+        cart.forEach((cartItem) => {
             if (cartItem.quantity < 1) {
-                CART_STATUS.style.padding = "20px";
-                const UPDATED_CART = CART.filter(item => item.id !== cartItem.id);
-                saveCartToLocalStorage(UPDATED_CART);
+                cartStatus.style.padding = "20px";
+                const updatedCart = cart.filter(item => item.id !== cartItem.id);
+                saveCartToLocalStorage(updatedCart);
                 return;
             }
-            const CART_ITEM_ELEMENT = createCartItemElement(cartItem);
-            CART_ITEMS_CONTAINER.appendChild(CART_ITEM_ELEMENT);
+            const cartItemElement = createCartItemElement(cartItem);
+            cartItemsContainer.appendChild(cartItemElement);
         });
     }
     else {
-        CART_STATUS.innerHTML = "The cart is empty";
-        CART_STATUS.style.padding = "2rem";
-        CART_STATUS.style.textAlign = "center";
+        document.getElementById('summary-table').innerHTML = ``;
+        document.getElementById('proceed-to-checkout').innerHTML = ``;
+        cartStatus.innerHTML = "The cart is empty";
+        cartStatus.style.padding = "2rem";
+        cartStatus.style.textAlign = "center";
     }
 }
 document.addEventListener("DOMContentLoaded", () => {
@@ -33,14 +52,14 @@ document.addEventListener("DOMContentLoaded", () => {
 const PRODUCT_CARDS = document.getElementById("productCards");
 if (PRODUCT_CARDS) {
     PRODUCT_CARDS.addEventListener("click", (event) => {
-        let TARGET = event.target;
-        if (TARGET.classList.contains("add-to-cart")) {
-            const PRODUCT_ID = TARGET.getAttribute("data-product-id");
-            if (PRODUCT_ID) {
-                const PRODUCTS = JSON.parse(localStorage.getItem("products"));
-                const PRODUCT = getProductById(PRODUCT_ID);
-                if (PRODUCT) {
-                    addToCart(PRODUCT);
+        let target = event.target;
+        if (target.classList.contains("add-to-cart")) {
+            const productId = target.getAttribute("data-product-id");
+            if (productId) {
+                const products = JSON.parse(localStorage.getItem("products"));
+                const product = getProductById(productId);
+                if (product) {
+                    addToCart(product);
                 }
             }
         }
@@ -48,10 +67,10 @@ if (PRODUCT_CARDS) {
 }
 ;
 function createCartItemElement(cartItem) {
-    const CART_ITEM_ELEMENT = document.createElement('div');
-    CART_ITEM_ELEMENT.classList.add('cart-item');
+    const cartItemElement = document.createElement('div');
+    cartItemElement.classList.add('cart-item');
     console.log("cartItem", cartItem);
-    CART_ITEM_ELEMENT.innerHTML = `
+    cartItemElement.innerHTML = `
         <div class="cart-list d-flex align-items-center justify-content-between">
             <div class="cart-item-image d-flex align-items-center">
                 <img id="cart-img" class="card-img-top" src="${cartItem.image}" alt="${cartItem.title}">
@@ -76,97 +95,76 @@ function createCartItemElement(cartItem) {
             </div>
         </div>
     `;
-    return CART_ITEM_ELEMENT;
+    return cartItemElement;
 }
 function calculateTotalPrice() {
-    const CART = getCartFromLocalStorage();
-    const TOTAL_PRICE_CONTAINER = document.getElementById('total-price');
-    if (CART && CART.length > 0) {
-        const TOTAL_PRICE = CART.reduce((total, cartItem) => {
+    const cart = getCartFromLocalStorage();
+    const totalPriceContainer = document.getElementById('total-price');
+    if (cart && cart.length > 0) {
+        const totalPrice = cart.reduce((total, cartItem) => {
             return total + (cartItem.price * cartItem.quantity);
         }, 0);
-        TOTAL_PRICE_CONTAINER.innerHTML = `$${TOTAL_PRICE.toFixed(2)}`;
+        totalPriceContainer.innerHTML = `$${totalPrice.toFixed(2)}`;
     }
     else {
-        TOTAL_PRICE_CONTAINER.innerHTML = '';
+        totalPriceContainer.innerHTML = '';
     }
 }
 function seasonalOffer() {
-    const OFFER_VALUE = document.getElementById('offer');
-    const TOTAL_PRICE = document.getElementById('total-price');
-    console.log(OFFER_VALUE.innerHTML);
-    if (TOTAL_PRICE) {
-        OFFER_VALUE.innerHTML = ((parseInt(TOTAL_PRICE.innerText.replace('$', '')) * 0.20).toFixed(2)).toString();
+    const offerValue = document.getElementById('offer');
+    const totalPrice = document.getElementById('total-price');
+    console.log(offerValue.innerHTML);
+    if (totalPrice) {
+        offerValue.innerHTML = ((parseInt(totalPrice.innerText.replace('$', '')) * 0.20).toFixed(2)).toString();
     }
     else {
-        OFFER_VALUE.innerHTML = 'N/A'; // set default value for OFFER_VALUE
+        offerValue.innerHTML = 'N/A'; // set default value for offerValue
     }
 }
 function grandPrice() {
-    const DELIVERY_PRICE_FETCH = document.getElementById('delivery');
-    const OFFER_PRICE_FETCH = document.getElementById('offer');
-    let TOTAL_PRICE = document.getElementById('total-price');
+    const deliveryPriceFetch = document.getElementById('delivery');
+    const offerPriceFetch = document.getElementById('offer');
+    let totalPrice = document.getElementById('total-price');
     let grandPrice = document.getElementById('grand');
     let deliveryPrice = 0;
     let offerPrice = 0;
-    if (DELIVERY_PRICE_FETCH) {
-        deliveryPrice += parseFloat(DELIVERY_PRICE_FETCH.innerText);
+    if (deliveryPriceFetch) {
+        deliveryPrice += parseFloat(deliveryPriceFetch.innerText);
     }
-    if (OFFER_PRICE_FETCH) {
-        offerPrice += parseFloat(OFFER_PRICE_FETCH.innerText);
+    if (offerPriceFetch) {
+        offerPrice += parseFloat(offerPriceFetch.innerText);
     }
     console.log(deliveryPrice, offerPrice, grandPrice);
-    if (grandPrice && TOTAL_PRICE)
-        grandPrice.innerHTML = ((parseFloat(TOTAL_PRICE.innerText.replace('$', '')) - offerPrice + deliveryPrice).toFixed(2)).toString();
+    if (grandPrice && totalPrice)
+        grandPrice.innerHTML = ((parseFloat(totalPrice.innerText.replace('$', '')) - offerPrice + deliveryPrice).toFixed(2)).toString();
     console.log(grandPrice.innerHTML);
 }
 function getCartFromLocalStorage() {
     return JSON.parse(localStorage.getItem('cart') || '[]');
 }
-function saveCartToLocalStorage(CART) {
-    localStorage.setItem('CART', JSON.stringify(CART));
+function saveCartToLocalStorage(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 document.getElementById('cart-items').addEventListener('click', (event) => {
-    const TARGET = event.target;
-    if (TARGET.classList.contains('decrease-quantity')) {
-        const PRODUCT_ID = TARGET.getAttribute('data-product-id');
-        if (PRODUCT_ID) {
-            decreaseQuantity(parseFloat(PRODUCT_ID));
+    const target = event.target;
+    if (target.classList.contains('decrease-quantity')) {
+        const productId = target.getAttribute('data-product-id');
+        if (productId) {
+            decreaseQuantity(parseFloat(productId));
         }
     }
-    else if (TARGET.classList.contains('increase-quantity')) {
-        const PRODUCT_ID = TARGET.getAttribute('data-product-id');
-        if (PRODUCT_ID) {
-            increaseQuantity(parseFloat(PRODUCT_ID));
+    else if (target.classList.contains('increase-quantity')) {
+        const productId = target.getAttribute('data-product-id');
+        if (productId) {
+            increaseQuantity(parseFloat(productId));
         }
     }
 });
-// Handles the increase in quantity of specific items
-function increaseQuantity(PRODUCT_ID) {
-    const CART = getCartFromLocalStorage();
-    console.log(CART);
-    let UPDATED_CART = CART.map((cartItem) => {
-        if (cartItem.id === PRODUCT_ID) {
-            console.error(cartItem.quantity);
-            cartItem.quantity++;
-            console.error(cartItem.quantity);
-            cartItem.currentPrice = cartItem.price * cartItem.quantity;
-            console.log(cartItem, cartItem.currentPrice, cartItem.quantity);
-            document.getElementById("price-" + (cartItem.id).toString()).innerText = '$' + cartItem.currentPrice.toFixed(2);
-            document.getElementById("quantity-" + (cartItem.id).toString()).innerText = cartItem.quantity;
-        }
-        return cartItem;
-    });
-    saveCartToLocalStorage(UPDATED_CART);
-    calculateTotalPrice();
-    grandPrice();
-}
-// Handles the increase in quantity of specific items and removes from cart when quantity is 0
-function decreaseQuantity(PRODUCT_ID) {
+function decreaseQuantity(productId) {
     let isNull = false;
-    const CART = getCartFromLocalStorage();
-    let UPDATED_CART = CART.map((cartItem) => {
-        if (cartItem.id === PRODUCT_ID) {
+    const cart = getCartFromLocalStorage();
+    let updatedCart = cart.map((cartItem) => {
+        if (cartItem.id === productId) {
             if (cartItem.quantity > 1) {
                 cartItem.quantity--;
                 cartItem.currentPrice -= cartItem.price;
@@ -180,8 +178,8 @@ function decreaseQuantity(PRODUCT_ID) {
         }
         return cartItem;
     });
-    UPDATED_CART = UPDATED_CART.filter((item) => item !== null);
-    saveCartToLocalStorage(UPDATED_CART);
+    updatedCart = updatedCart.filter((item) => item !== null);
+    saveCartToLocalStorage(updatedCart);
     calculateTotalPrice();
     grandPrice();
     if (isNull) {

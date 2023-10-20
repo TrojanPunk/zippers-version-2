@@ -1,5 +1,6 @@
 import { starRating } from "./utilities.js"
 import { displayProductIndividually } from "./utilities.js"
+import { addToCart } from "./utilities.js";
 
 document.getElementById("cart-visit").addEventListener("click", () => {
     window.location.href = 'cart.html'
@@ -43,7 +44,7 @@ function individualProduct() {
                 <img class="coupon-image" src="assets/images/C3.png">
                 <img class="coupon-image" src="assets/images/C4.png">
             </div>
-            <button class="add-to-cart-button btn btn-primary bg-green primary-color-black">Add to Cart</button>   
+            <button href="cart.html" onclick="addToCart(${lastItem.id})" class="add-to-cart-button btn btn-primary bg-green primary-color-black" data-product-id="${lastItem.id}">Add to Cart</button>   
         </div>
     </div>
 `;
